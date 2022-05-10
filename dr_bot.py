@@ -21,16 +21,13 @@ for kategori,sayfa in itertools.product(kategoriler,sayfalar):
             if book.find(class_="prd-row").find("a") is not None:
                 img_url = book.find("img")["data-src"]
                 yazar = book.find(class_="prd-row").find("a").string
-                yazar = yazar.replace("?","soru")
-                yazar = yazar.replace(":","ikinokta")
-                yazar = yazar.replace("/","slash")
+                yazar = yazar.replace("?","soru").replace(":","ikinokta").replace("/","slash") # Dosya oluştururken kullanamayacağımız bağızı karakterler
+                
                 isim = book.find(class_="prd-content-wrapper").find("a").string
-                isim = isim.replace("?","soru")
-                isim = isim.replace(":","ikinokta")
-                isim = isim.replace("/","slash")
+                isim = isim.replace("?","soru").replace(":","ikinokta").replace("/","slash") # Dosya oluştururken kullanamayacağımız bağızı karakterler
                 
                 img = Image.open(requests.get(img_url,stream=True).raw)
-                img.save("resimleras/e_"+yazar+"_"+isim+".jpg")
+                img.save("resimler/"+yazar+"_"+isim+".jpg")
             
             i+=1    
         print(page)
